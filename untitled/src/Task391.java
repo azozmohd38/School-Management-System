@@ -22,6 +22,6 @@ public class Task391 {
         IO.println(isSorted(new int[]{1, 2, 3, 4}));
         IO.println(isSorted(new int[]{1, 5, 2, 8}));
         IO.println(isSorted(new int[]{10, 20, 30}));
-        IO.println(isSorted(new int[]{3, 3, 3}));    
+        IO.println(isSorted(new int[]{3, 3, 3}));
     }
 }
