@@ -19,6 +19,6 @@ public class Task393 {
         IO.println(power(2, 10));
         IO.println(power(3, 4));
         IO.println(power(5, 3));
-        IO.println(power(2, 0));  
+        IO.println(power(2, 0));
     }
 }
