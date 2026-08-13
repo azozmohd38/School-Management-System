@@ -19,7 +19,7 @@ public class Task392 {
     public static void main(String[] args) {
         IO.println(removeChar("banana", 'a'));
         IO.println(removeChar("hello", 'l'));
-        IO.println(removeChar("mississippi", 's')); 
+        IO.println(removeChar("mississippi", 's'));
        IO.println(removeChar("abc", 'z'));
     }
 }
