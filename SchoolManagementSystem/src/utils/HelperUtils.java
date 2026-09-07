@@ -50,6 +50,14 @@ public final class HelperUtils {
         return value > 0;
     }
 
+    public static boolean isNonNegative(int value) {
+        return value >= 0;
+    }
+
+    public static boolean isNonNegative(double value) {
+        return value >= 0;
+    }
+
     public static boolean isInRange(int value, int min, int max) {
         return value >= min && value <= max;
     }
