@@ -52,11 +52,29 @@ public class CourseService implements Manageable, Searchable {
 
     @Override
     public Object[] search(String keyword) {
-        return new CourseRecord[0];
+        CourseRecord[] matches = new CourseRecord[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (records[i].getStudentId().toLowerCase().contains(keyword.toLowerCase())
+                    || records[i].getTeacherId().toLowerCase().contains(keyword.toLowerCase())
+                    || records[i].getTerm().toLowerCase().contains(keyword.toLowerCase())) {
+                matches[matchCount++] = records[i];
+            }
+        }
+        CourseRecord[] result = new CourseRecord[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
     }
 
     @Override
     public Object searchById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (records[i].getRecordId().equalsIgnoreCase(id)) {
+                return records[i];
+            }
+        }
         return null;
     }
 
