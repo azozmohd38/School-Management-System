@@ -97,6 +97,16 @@ public class CourseService implements Manageable, Searchable {
         return result;
     }
 
+    public int countFinalized() {
+        int finalized = 0;
+        for (int i = 0; i < count; i++) {
+            if (records[i].isFinalized()) {
+                finalized++;
+            }
+        }
+        return finalized;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
