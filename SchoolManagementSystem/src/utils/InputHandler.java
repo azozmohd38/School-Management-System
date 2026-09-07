@@ -75,6 +75,16 @@ public class InputHandler {
         }
     }
 
+    public double readDouble(String prompt, double min, double max) {
+        while (true) {
+            double value = readDouble(prompt);
+            if (HelperUtils.isInRange(value, min, max)) {
+                return value;
+            }
+            System.out.println("Decimal value is outside the allowed range");
+        }
+    }
+
     public boolean readConfirmation(String prompt) {
         String value = readOneOf(prompt, new String[]{"YES", "NO", "Y", "N"});
         return value.equalsIgnoreCase("YES") || value.equalsIgnoreCase("Y");
