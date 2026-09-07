@@ -25,6 +25,15 @@ public class EnrollmentService implements Manageable, Searchable {
 
     @Override
     public boolean removeById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (enrollments[i].getEnrollmentId().equalsIgnoreCase(id)) {
+                for (int j = i; j < count - 1; j++) {
+                    enrollments[j] = enrollments[j + 1];
+                }
+                enrollments[--count] = null;
+                return true;
+            }
+        }
         return false;
     }
 
