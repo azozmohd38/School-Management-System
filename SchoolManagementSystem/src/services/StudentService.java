@@ -129,6 +129,14 @@ public class StudentService implements Manageable, Searchable {
         return result;
     }
 
+    public double totalOutstanding() {
+        double total = 0.0;
+        for (int i = 0; i < count; i++) {
+            total += students[i].getFeeBalance();
+        }
+        return total;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
