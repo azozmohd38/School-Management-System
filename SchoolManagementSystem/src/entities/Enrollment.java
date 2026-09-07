@@ -107,10 +107,16 @@ public class Enrollment implements Displayable {
     }
 
     public void cancel() {
+        if ("COMPLETED".equals(status)) {
+            throw new IllegalStateException("Completed enrollment cannot be cancelled");
+        }
         setStatus("CANCELLED");
     }
 
     public void complete() {
+        if ("CANCELLED".equals(status)) {
+            throw new IllegalStateException("Cancelled enrollment cannot be completed");
+        }
         setStatus("COMPLETED");
     }
 
