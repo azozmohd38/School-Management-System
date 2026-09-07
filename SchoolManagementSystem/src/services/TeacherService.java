@@ -25,6 +25,15 @@ public class TeacherService implements Manageable, Searchable {
 
     @Override
     public boolean removeById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (teachers[i].getId().equalsIgnoreCase(id)) {
+                for (int j = i; j < count - 1; j++) {
+                    teachers[j] = teachers[j + 1];
+                }
+                teachers[--count] = null;
+                return true;
+            }
+        }
         return false;
     }
 
