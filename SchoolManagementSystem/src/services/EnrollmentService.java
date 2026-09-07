@@ -79,6 +79,31 @@ public class EnrollmentService implements Manageable, Searchable {
         return null;
     }
 
+    public Enrollment enroll(String studentId, String courseId, String date) {
+        Enrollment enrollment = new Enrollment(
+                HelperUtils.generateId("ENR-"),
+                studentId,
+                courseId,
+                date,
+                "ACTIVE",
+                "",
+                false
+        );
+        add(enrollment);
+        return enrollment;
+    }
+
+    public Enrollment enroll(String studentId, String courseId, String date, String term) {
+        Enrollment enrollment = enroll(studentId, courseId, date);
+        enrollment.addNotes("Term: " + term);
+        return enrollment;
+    }
+
+    public Enrollment enroll(Enrollment enrollment, String reason) {
+        enrollment.setReason(reason);
+        return add(enrollment) ? enrollment : null;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
