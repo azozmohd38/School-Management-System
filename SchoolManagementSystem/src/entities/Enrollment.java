@@ -102,6 +102,10 @@ public class Enrollment implements Displayable {
         return notes;
     }
 
+    public boolean isActiveEnrollment() {
+        return "ACTIVE".equals(status);
+    }
+
     public void cancel() {
         setStatus("CANCELLED");
     }
