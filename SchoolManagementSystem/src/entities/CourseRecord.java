@@ -112,6 +112,10 @@ public class CourseRecord implements Displayable {
         return finalized;
     }
 
+    public boolean isPassed() {
+        return grade >= 50.0;
+    }
+
     @Override
     public void displayInfo() {
         System.out.println("Record ID: " + recordId);
