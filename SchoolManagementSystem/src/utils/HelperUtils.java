@@ -71,7 +71,11 @@ public final class HelperUtils {
     }
 
     public static boolean isValidPhone(String phone) {
-        return phone != null && phone.trim().length() >= 8 && phone.trim().length() <= 15;
+        if (phone == null) {
+            return false;
+        }
+        String value = phone.trim();
+        return value.length() >= 8 && value.length() <= 15;
     }
 
     public static boolean isOneOf(String value, String[] allowed) {
