@@ -44,7 +44,7 @@ public class InputHandler {
     public int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
-            String value = scanner.nextLine();
+            String value = scanner.nextLine().trim();
             try {
                 return Integer.parseInt(value);
             } catch (NumberFormatException ex) {
