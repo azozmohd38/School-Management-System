@@ -48,6 +48,11 @@ public class HeadTeacher extends Teacher {
         if (!HelperUtils.isValidText(meetingDate) || meetingCount >= upcomingMeetingDates.length) {
             return false;
         }
+        for (int i = 0; i < meetingCount; i++) {
+            if (upcomingMeetingDates[i].equalsIgnoreCase(meetingDate.trim())) {
+                return false;
+            }
+        }
         upcomingMeetingDates[meetingCount++] = meetingDate.trim();
         return true;
     }
