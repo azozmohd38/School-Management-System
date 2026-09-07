@@ -86,6 +86,11 @@ public class TeacherService implements Manageable, Searchable {
         return add(teacher) ? teacher : null;
     }
 
+    public boolean assignClass(String teacherId, String classId) {
+        Teacher teacher = (Teacher) searchById(teacherId);
+        return teacher != null && teacher.assignClass(classId);
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
