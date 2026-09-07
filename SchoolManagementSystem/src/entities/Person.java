@@ -184,6 +184,14 @@ public class Person implements Displayable {
         return age >= 18;
     }
 
+    public void activate() {
+        setActive(true);
+    }
+
+    public void deactivate() {
+        setActive(false);
+    }
+
     @Override
     public void displayInfo() {
         System.out.println("ID: " + id);
