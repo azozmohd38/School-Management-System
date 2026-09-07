@@ -67,6 +67,55 @@ public class SchoolApp {
         System.out.println("School Management System closed.");
     }
 
+    public void printAll(Person[] people) {
+        if (people == null) {
+            return;
+        }
+
+        for (Person person : people) {
+            if (person != null) {
+                person.displayInfo();
+            }
+        }
+    }
+
+    public int[] countByType(Person[] people) {
+        int seniorStudents = 0;
+        int students = 0;
+        int headTeachers = 0;
+        int teachers = 0;
+
+        if (people != null) {
+            for (Person person : people) {
+                if (person instanceof SeniorStudent) {
+                    seniorStudents++;
+                } else if (person instanceof Student) {
+                    students++;
+                } else if (person instanceof HeadTeacher) {
+                    headTeachers++;
+                } else if (person instanceof Teacher) {
+                    teachers++;
+                }
+            }
+        }
+
+        return new int[]{students, seniorStudents, teachers, headTeachers};
+    }
+
+    public Person findOldest(Person[] people) {
+        Person oldest = null;
+
+        if (people != null) {
+            for (Person person : people) {
+                if (person != null && (oldest == null || person.getAge() > oldest.getAge())) {
+                    oldest = person;
+                }
+            }
+        }
+
+        return oldest;
+    }
+
     private void handleStudents() {
         System.out.println("Student menu");
     }
