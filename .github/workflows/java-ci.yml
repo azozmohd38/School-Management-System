@@ -1,0 +1,33 @@
+name: School Management Java CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Compile required project
+        run: |
+          mkdir -p out
+          find SchoolManagementSystem/src -name "*.java" -print0 | xargs -0 javac -d out
+
+      - name: Verify no generic collections
+        run: |
+          if grep -R -nE 'ArrayList<|List<|Map<|Set<|HashMap<|HashSet<' SchoolManagementSystem/src; then
+            echo "Generic collection usage found"
+            exit 1
+          fi
