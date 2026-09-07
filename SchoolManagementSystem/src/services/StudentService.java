@@ -96,6 +96,24 @@ public class StudentService implements Manageable, Searchable {
         return add(student) ? student : null;
     }
 
+    public boolean updateContact(String id, String phoneNumber) {
+        Student student = (Student) searchById(id);
+        if (student == null) {
+            return false;
+        }
+        student.updateContact(phoneNumber);
+        return true;
+    }
+
+    public boolean updateContact(String id, String phoneNumber, String email) {
+        Student student = (Student) searchById(id);
+        if (student == null) {
+            return false;
+        }
+        student.updateContact(phoneNumber, email);
+        return true;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
