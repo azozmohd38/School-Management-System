@@ -164,6 +164,6 @@ public class Enrollment implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println(enrollmentId + " - " + studentId + " - " + courseId + " - " + status);
+        System.out.println(enrollmentId + " - " + studentId + " - " + courseId + " - " + status + " - Repeat: " + repeat);
     }
 }
