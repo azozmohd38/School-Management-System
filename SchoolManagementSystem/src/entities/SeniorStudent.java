@@ -107,6 +107,6 @@ public class SeniorStudent extends Student {
 
     @Override
     public void displaySummary() {
-        System.out.println(getId() + " - " + getFullName() + " - " + major + " - GPA " + gpa);
+        System.out.println(getId() + " - " + getFullName() + " - " + major + " - GPA " + gpa + " - Credits " + creditsEarned);
     }
 }
