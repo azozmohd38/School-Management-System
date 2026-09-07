@@ -206,11 +206,81 @@ public class SchoolApp {
     }
 
     private void handleCourses() {
-        System.out.println("Course menu");
+        System.out.println();
+        System.out.println("1. View all course records");
+        System.out.println("2. Search course records");
+        System.out.println("3. List by term");
+        System.out.println("4. Count finalized");
+        System.out.println("5. Remove course record");
+        System.out.println("6. Back");
+
+        int choice = input.readInt("Choose: ", 1, 6);
+
+        if (choice == 1) {
+            Object[] records = courseService.getAll();
+            for (Object record : records) {
+                ((CourseRecord) record).displayInfo();
+            }
+        } else if (choice == 2) {
+            Object[] results = courseService.search(input.readText("Keyword: "));
+            for (Object result : results) {
+                ((CourseRecord) result).displaySummary();
+            }
+        } else if (choice == 3) {
+            CourseRecord[] records = courseService.listByTerm(input.readText("Term: "));
+            for (CourseRecord record : records) {
+                record.displaySummary();
+            }
+        } else if (choice == 4) {
+            System.out.println("Finalized records: " + courseService.countFinalized());
+        } else if (choice == 5) {
+            courseService.removeById(input.readText("Record ID: "));
+        }
     }
 
     private void handleEnrollments() {
-        System.out.println("Enrollment menu");
+        System.out.println();
+        System.out.println("1. Enroll student");
+        System.out.println("2. View all enrollments");
+        System.out.println("3. Cancel enrollment");
+        System.out.println("4. Complete enrollment");
+        System.out.println("5. Transfer enrollment");
+        System.out.println("6. List by status");
+        System.out.println("7. List by student");
+        System.out.println("8. Back");
+
+        int choice = input.readInt("Choose: ", 1, 8);
+
+        if (choice == 1) {
+            String studentId = input.readText("Student ID: ");
+            String courseId = input.readText("Course ID: ");
+            String date = input.readText("Enroll date: ");
+            enrollmentService.enroll(studentId, courseId, date);
+        } else if (choice == 2) {
+            Object[] enrollments = enrollmentService.getAll();
+            for (Object enrollment : enrollments) {
+                ((Enrollment) enrollment).displayInfo();
+            }
+        } else if (choice == 3) {
+            enrollmentService.cancel(input.readText("Enrollment ID: "));
+        } else if (choice == 4) {
+            enrollmentService.complete(input.readText("Enrollment ID: "));
+        } else if (choice == 5) {
+            String enrollmentId = input.readText("Enrollment ID: ");
+            String newCourseId = input.readText("New course ID: ");
+            String newDate = input.readText("New date: ");
+            enrollmentService.transfer(enrollmentId, newCourseId, newDate);
+        } else if (choice == 6) {
+            Enrollment[] enrollments = enrollmentService.listByStatus(input.readText("Status: "));
+            for (Enrollment enrollment : enrollments) {
+                enrollment.displaySummary();
+            }
+        } else if (choice == 7) {
+            Enrollment[] enrollments = enrollmentService.listByStudent(input.readText("Student ID: "));
+            for (Enrollment enrollment : enrollments) {
+                enrollment.displaySummary();
+            }
+        }
     }
 
     private void handleReports() {
