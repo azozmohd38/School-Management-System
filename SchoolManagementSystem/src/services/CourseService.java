@@ -78,6 +78,10 @@ public class CourseService implements Manageable, Searchable {
         return null;
     }
 
+    public CourseRecord addRecord(CourseRecord record) {
+        return add(record) ? record : null;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
