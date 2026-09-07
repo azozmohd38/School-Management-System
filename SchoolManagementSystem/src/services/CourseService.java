@@ -82,6 +82,21 @@ public class CourseService implements Manageable, Searchable {
         return add(record) ? record : null;
     }
 
+    public CourseRecord[] listByTerm(String term) {
+        CourseRecord[] matches = new CourseRecord[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (records[i].getTerm().equalsIgnoreCase(term)) {
+                matches[matchCount++] = records[i];
+            }
+        }
+        CourseRecord[] result = new CourseRecord[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
