@@ -24,6 +24,15 @@ public class CourseService implements Manageable, Searchable {
 
     @Override
     public boolean removeById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (records[i].getRecordId().equalsIgnoreCase(id)) {
+                for (int j = i; j < count - 1; j++) {
+                    records[j] = records[j + 1];
+                }
+                records[--count] = null;
+                return true;
+            }
+        }
         return false;
     }
 
