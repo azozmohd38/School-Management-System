@@ -52,11 +52,27 @@ public class StudentService implements Manageable, Searchable {
 
     @Override
     public Object[] search(String keyword) {
-        return new Student[0];
+        Student[] matches = new Student[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (students[i].getFullName().toLowerCase().contains(keyword.toLowerCase())) {
+                matches[matchCount++] = students[i];
+            }
+        }
+        Student[] result = new Student[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
     }
 
     @Override
     public Object searchById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (students[i].getId().equalsIgnoreCase(id)) {
+                return students[i];
+            }
+        }
         return null;
     }
 
