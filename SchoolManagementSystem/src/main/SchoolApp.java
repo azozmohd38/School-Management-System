@@ -34,6 +34,7 @@ public class SchoolApp {
     }
 
     public void run() {
+        seedSampleData();
         boolean running = true;
 
         while (running) {
@@ -284,7 +285,101 @@ public class SchoolApp {
     }
 
     private void handleReports() {
-        System.out.println("Reports menu");
+        Person[] people = buildPeopleArray();
+        int[] counts = countByType(people);
+
+        System.out.println("Regular students: " + counts[0]);
+        System.out.println("Senior students: " + counts[1]);
+        System.out.println("Teachers: " + counts[2]);
+        System.out.println("Head teachers: " + counts[3]);
+        System.out.println("Outstanding fees: " + studentService.totalOutstanding());
+        System.out.println("Average grade: " + courseService.averageGrade());
+
+        Person oldest = findOldest(people);
+        if (oldest != null) {
+            System.out.println("Oldest person:");
+            oldest.displaySummary();
+        }
+    }
+
+    private Person[] buildPeopleArray() {
+        Object[] studentObjects = studentService.getAll();
+        Object[] teacherObjects = teacherService.getAll();
+        Person[] people = new Person[studentObjects.length + teacherObjects.length];
+        int index = 0;
+
+        for (Object student : studentObjects) {
+            people[index++] = (Student) student;
+        }
+
+        for (Object teacher : teacherObjects) {
+            people[index++] = (Teacher) teacher;
+        }
+
+        return people;
+    }
+
+    private void seedSampleData() {
+        studentService.addStudent(new Student("S1", "Ali", "Salim", "2009-01-10", "Male",
+                "90000001", "ali@school.com", "Muscat", "N1001", 17, true,
+                11, "2025-09-01", 120.0, false));
+
+        studentService.addStudent(new Student("S2", "Sara", "Ahmed", "2008-02-12", "Female",
+                "90000002", "sara@school.com", "Muscat", "N1002", 18, true,
+                12, "2024-09-01", 0.0, true));
+
+        studentService.addStudent(new Student("S3", "Maha", "Khalid", "2009-03-15", "Female",
+                "90000003", "maha@school.com", "Sohar", "N1003", 17, true,
+                11, "2025-09-01", 80.0, false));
+
+        studentService.addStudent(new SeniorStudent("S4", "Omar", "Said", "2006-04-20", "Male",
+                "90000004", "omar@school.com", "Nizwa", "N1004", 20, true,
+                12, "2022-09-01", 30.0, false, "Science", 3.2, "2027-06-01", 125));
+
+        studentService.addStudent(new SeniorStudent("S5", "Noor", "Hamood", "2005-05-22", "Female",
+                "90000005", "noor@school.com", "Muscat", "N1005", 21, true,
+                12, "2021-09-01", 0.0, true, "Business", 3.7, "2027-06-01", 130));
+
+        studentService.addStudent(new Student("S6", "Hassan", "Nasser", "2008-06-25", "Male",
+                "90000006", "hassan@school.com", "Sur", "N1006", 18, true,
+                12, "2024-09-01", 50.0, false));
+
+        Teacher teacher1 = new Teacher("T1", "Ahmed", "Rashid", "1985-01-01", "Male",
+                "91000001", "ahmed.teacher@school.com", "Muscat", "T1001", 41, true,
+                "Math", 15, 1200.0, true);
+        teacher1.addSlot("08:00");
+
+        Teacher teacher2 = new Teacher("T2", "Laila", "Said", "1988-02-02", "Female",
+                "91000002", "laila@school.com", "Muscat", "T1002", 38, true,
+                "English", 12, 1150.0, false);
+        teacher2.addSlot("09:00");
+
+        Teacher teacher3 = new Teacher("T3", "Salim", "Ali", "1990-03-03", "Male",
+                "91000003", "salim@school.com", "Sohar", "T1003", 36, true,
+                "Science", 10, 1100.0, false);
+        teacher3.addSlot("10:00");
+
+        HeadTeacher headTeacher = new HeadTeacher("T4", "Maryam", "Hamed", "1980-04-04", "Female",
+                "91000004", "maryam@school.com", "Muscat", "T1004", 46, true,
+                "Administration", 20, 1600.0, true, 3, true);
+
+        teacherService.addTeacher(teacher1);
+        teacherService.addTeacher(teacher2);
+        teacherService.addTeacher(teacher3);
+        teacherService.addHeadTeacher(headTeacher);
+
+        courseService.addRecord(new CourseRecord("R1", "S1", "T1", "Term1", 78, "Good", "", true));
+        courseService.addRecord(new CourseRecord("R2", "S2", "T2", "Term1", 88, "Very Good", "", true));
+        courseService.addRecord(new CourseRecord("R3", "S3", "T3", "Term1", 69, "Good", "", false));
+        courseService.addRecord(new CourseRecord("R4", "S4", "T1", "Term2", 91, "Excellent", "", true));
+        courseService.addRecord(new CourseRecord("R5", "S5", "T2", "Term2", 84, "Very Good", "", true));
+
+        enrollmentService.enroll("S1", "C1", "2026-09-01");
+        enrollmentService.enroll("S2", "C2", "2026-09-01");
+        enrollmentService.enroll("S3", "C3", "2026-09-02");
+        enrollmentService.enroll("S4", "C1", "2026-09-02");
+        enrollmentService.enroll("S5", "C2", "2026-09-03");
+        enrollmentService.enroll("S6", "C3", "2026-09-03");
     }
 
     private void printMainMenu() {
