@@ -78,6 +78,14 @@ public class TeacherService implements Manageable, Searchable {
         return null;
     }
 
+    public Teacher addTeacher(Teacher teacher) {
+        return add(teacher) ? teacher : null;
+    }
+
+    public HeadTeacher addHeadTeacher(HeadTeacher teacher) {
+        return add(teacher) ? teacher : null;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
