@@ -117,7 +117,51 @@ public class SchoolApp {
     }
 
     private void handleStudents() {
-        System.out.println("Student menu");
+        System.out.println();
+        System.out.println("1. Add basic student");
+        System.out.println("2. View all students");
+        System.out.println("3. Search student");
+        System.out.println("4. Update contact");
+        System.out.println("5. Remove student");
+        System.out.println("6. List senior students");
+        System.out.println("7. Back");
+
+        int choice = input.readInt("Choose: ", 1, 7);
+
+        if (choice == 1) {
+            String id = input.readText("ID: ");
+            String firstName = input.readText("First name: ");
+            String lastName = input.readText("Last name: ");
+            int grade = input.readInt("Grade level: ", 1, 12);
+            studentService.addStudent(id, firstName, lastName, grade);
+        } else if (choice == 2) {
+            Object[] students = studentService.getAll();
+            for (Object student : students) {
+                ((Student) student).displayInfo();
+            }
+        } else if (choice == 3) {
+            String keyword = input.readText("Keyword: ");
+            Object[] results = studentService.search(keyword);
+            for (Object result : results) {
+                ((Student) result).displaySummary();
+            }
+        } else if (choice == 4) {
+            String id = input.readText("Student ID: ");
+            String phone = input.readText("Phone: ");
+            if (input.readConfirmation("Update email too? (yes/no): ")) {
+                String email = input.readText("Email: ");
+                studentService.updateContact(id, phone, email);
+            } else {
+                studentService.updateContact(id, phone);
+            }
+        } else if (choice == 5) {
+            studentService.removeById(input.readText("Student ID: "));
+        } else if (choice == 6) {
+            Student[] seniors = studentService.listSeniors();
+            for (Student senior : seniors) {
+                senior.displaySummary();
+            }
+        }
     }
 
     private void handleTeachers() {
