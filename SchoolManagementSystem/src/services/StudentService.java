@@ -114,6 +114,21 @@ public class StudentService implements Manageable, Searchable {
         return true;
     }
 
+    public Student[] listSeniors() {
+        Student[] matches = new Student[count];
+        int seniorCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (students[i] instanceof entities.SeniorStudent) {
+                matches[seniorCount++] = students[i];
+            }
+        }
+        Student[] result = new Student[seniorCount];
+        for (int i = 0; i < seniorCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
