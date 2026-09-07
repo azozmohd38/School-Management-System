@@ -45,7 +45,6 @@ public class StudentService implements Manageable, Searchable {
         return result;
     }
 
-    @Override
     public int count() {
         return count;
     }
@@ -137,7 +136,6 @@ public class StudentService implements Manageable, Searchable {
         return total;
     }
 
-    @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
     }
