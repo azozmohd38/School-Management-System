@@ -75,6 +75,9 @@ public class CourseRecord implements Displayable {
     }
 
     public void setGrade(double grade) {
+        if (finalized) {
+            throw new IllegalStateException("Finalized record cannot be changed");
+        }
         if (!HelperUtils.isInRange(grade, 0.0, 100.0)) {
             throw new IllegalArgumentException("Grade must be between 0 and 100");
         }
