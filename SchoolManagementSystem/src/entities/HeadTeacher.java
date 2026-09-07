@@ -61,6 +61,17 @@ public class HeadTeacher extends Teacher {
         return meetingCount;
     }
 
+    public void listUpcomingMeetings() {
+        if (meetingCount == 0) {
+            System.out.println("No upcoming meetings");
+            return;
+        }
+
+        for (int i = 0; i < meetingCount; i++) {
+            System.out.println((i + 1) + ". " + upcomingMeetingDates[i]);
+        }
+    }
+
     @Override
     public void displayInfo() {
         super.displayInfo();
