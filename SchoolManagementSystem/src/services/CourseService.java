@@ -107,6 +107,17 @@ public class CourseService implements Manageable, Searchable {
         return finalized;
     }
 
+    public double averageGrade() {
+        if (count == 0) {
+            return 0.0;
+        }
+        double total = 0.0;
+        for (int i = 0; i < count; i++) {
+            total += records[i].getGrade();
+        }
+        return total / count;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
