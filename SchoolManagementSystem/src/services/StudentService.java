@@ -24,6 +24,15 @@ public class StudentService implements Manageable, Searchable {
 
     @Override
     public boolean removeById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (students[i].getId().equalsIgnoreCase(id)) {
+                for (int j = i; j < count - 1; j++) {
+                    students[j] = students[j + 1];
+                }
+                students[--count] = null;
+                return true;
+            }
+        }
         return false;
     }
 
