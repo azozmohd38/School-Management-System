@@ -90,6 +90,10 @@ public class InputHandler {
         return value.equalsIgnoreCase("YES") || value.equalsIgnoreCase("Y");
     }
 
+    public boolean readConfirmation() {
+        return readConfirmation("Confirm (yes/no): ");
+    }
+
     public String readOneOf(String prompt, String[] allowed) {
         while (true) {
             String value = readText(prompt);
