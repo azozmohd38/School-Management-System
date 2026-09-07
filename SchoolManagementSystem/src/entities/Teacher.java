@@ -145,6 +145,17 @@ public class Teacher extends Person {
         return lastSalaryReason;
     }
 
+    public void listAvailableSlots() {
+        if (slotCount == 0) {
+            System.out.println("No available slots");
+            return;
+        }
+
+        for (int i = 0; i < slotCount; i++) {
+            System.out.println((i + 1) + ". " + availableTimeSlots[i]);
+        }
+    }
+
     @Override
     public void displayInfo() {
         super.displayInfo();
