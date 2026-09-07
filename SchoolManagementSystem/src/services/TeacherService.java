@@ -106,6 +106,21 @@ public class TeacherService implements Manageable, Searchable {
         return result;
     }
 
+    public Teacher[] availableTeachers(String slot) {
+        Teacher[] matches = new Teacher[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (teachers[i].hasSlot(slot)) {
+                matches[matchCount++] = teachers[i];
+            }
+        }
+        Teacher[] result = new Teacher[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
