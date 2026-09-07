@@ -98,7 +98,7 @@ public class InputHandler {
         while (true) {
             String value = readText(prompt);
             if (HelperUtils.isOneOf(value, allowed)) {
-                return value;
+                return value.trim();
             }
             System.out.println("Value is not allowed");
         }
