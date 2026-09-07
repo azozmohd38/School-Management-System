@@ -115,6 +115,9 @@ public class Enrollment implements Displayable {
     }
 
     public void transfer(String newCourseId, String newDate) {
+        if ("COMPLETED".equals(status)) {
+            throw new IllegalStateException("Completed enrollment cannot be transferred");
+        }
         setCourseId(newCourseId);
         setEnrollDate(newDate);
         setStatus("TRANSFERRED");
