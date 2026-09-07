@@ -131,6 +131,36 @@ public class EnrollmentService implements Manageable, Searchable {
         return true;
     }
 
+    public Enrollment[] listByStatus(String status) {
+        Enrollment[] matches = new Enrollment[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (enrollments[i].getStatus().equalsIgnoreCase(status)) {
+                matches[matchCount++] = enrollments[i];
+            }
+        }
+        Enrollment[] result = new Enrollment[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
+    }
+
+    public Enrollment[] listByStudent(String studentId) {
+        Enrollment[] matches = new Enrollment[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (enrollments[i].getStudentId().equalsIgnoreCase(studentId)) {
+                matches[matchCount++] = enrollments[i];
+            }
+        }
+        Enrollment[] result = new Enrollment[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
