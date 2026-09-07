@@ -102,6 +102,13 @@ public class Student extends Person {
         if (!HelperUtils.isValidText(recordId) || recordCount >= pastCourseRecordIds.length) {
             return false;
         }
+
+        for (int i = 0; i < recordCount; i++) {
+            if (pastCourseRecordIds[i].equalsIgnoreCase(recordId.trim())) {
+                return false;
+            }
+        }
+
         pastCourseRecordIds[recordCount++] = recordId.trim();
         return true;
     }
