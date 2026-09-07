@@ -15,6 +15,10 @@ public final class HelperUtils {
         return values == null || values.length == 0;
     }
 
+    public static boolean isBlank(String value) {
+        return isEmpty(value);
+    }
+
     public static boolean isValidText(String value) {
         return !isEmpty(value);
     }
