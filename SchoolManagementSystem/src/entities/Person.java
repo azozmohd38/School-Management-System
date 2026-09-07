@@ -186,7 +186,16 @@ public class Person implements Displayable {
 
     @Override
     public void displayInfo() {
-        System.out.println(this);
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + getFullName());
+        System.out.println("Date of Birth: " + dateOfBirth);
+        System.out.println("Gender: " + gender);
+        System.out.println("Phone: " + phoneNumber);
+        System.out.println("Email: " + email);
+        System.out.println("Address: " + address);
+        System.out.println("National ID: " + nationalId);
+        System.out.println("Age: " + age);
+        System.out.println("Active: " + active);
     }
 
     @Override
