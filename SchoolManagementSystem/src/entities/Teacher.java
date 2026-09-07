@@ -105,6 +105,13 @@ public class Teacher extends Person {
         if (!HelperUtils.isValidText(classId) || classCount >= assignedClassIds.length) {
             return false;
         }
+
+        for (int i = 0; i < classCount; i++) {
+            if (assignedClassIds[i].equalsIgnoreCase(classId.trim())) {
+                return false;
+            }
+        }
+
         assignedClassIds[classCount++] = classId.trim();
         return true;
     }
