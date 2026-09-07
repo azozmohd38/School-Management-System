@@ -101,6 +101,10 @@ public class Student extends Person {
         return true;
     }
 
+    public int getSubjectCount() {
+        return subjectCount;
+    }
+
     public int getRecordCount() {
         return recordCount;
     }
