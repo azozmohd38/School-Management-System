@@ -36,7 +36,10 @@ public final class HelperUtils {
     }
 
     public static String generateId(String prefix) {
-        return prefix + counter++;
+        if (isEmpty(prefix)) {
+            return generateId();
+        }
+        return prefix.trim() + counter++;
     }
 
     public static boolean isPositive(int value) {
