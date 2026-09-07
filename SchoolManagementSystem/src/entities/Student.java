@@ -132,6 +132,14 @@ public class Student extends Person {
         setFeeBalance(0);
     }
 
+    public void updateContact(String phoneNumber) {
+        super.updateContact(phoneNumber);
+    }
+
+    public void updateContact(String phoneNumber, String email) {
+        super.updateContact(phoneNumber, email);
+    }
+
     @Override
     public void displayInfo() {
         super.displayInfo();
