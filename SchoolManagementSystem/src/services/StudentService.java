@@ -76,6 +76,26 @@ public class StudentService implements Manageable, Searchable {
         return null;
     }
 
+    public Student addStudent(String id, String firstName, String lastName) {
+        Student student = new Student(id, firstName, lastName, "N/A", "N/A",
+                "00000000", "N/A", "N/A", "N/A", 0, true,
+                1, "N/A", 0.0, false);
+        add(student);
+        return student;
+    }
+
+    public Student addStudent(String id, String firstName, String lastName, int gradeLevel) {
+        Student student = new Student(id, firstName, lastName, "N/A", "N/A",
+                "00000000", "N/A", "N/A", "N/A", 0, true,
+                gradeLevel, "N/A", 0.0, false);
+        add(student);
+        return student;
+    }
+
+    public Student addStudent(Student student) {
+        return add(student) ? student : null;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
