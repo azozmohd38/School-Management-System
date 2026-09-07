@@ -1,6 +1,8 @@
 package services;
 
+import entities.CourseRecord;
 import entities.Enrollment;
+import entities.Student;
 import interfaces.Manageable;
 import interfaces.Searchable;
 import utils.HelperUtils;
@@ -98,8 +100,16 @@ public class EnrollmentService implements Manageable, Searchable {
         return enrollment;
     }
 
-    public Enrollment enroll(Enrollment enrollment, String reason) {
-        enrollment.setReason(reason);
+    public Enrollment enroll(Student student, CourseRecord course, String date, String reason) {
+        Enrollment enrollment = new Enrollment(
+                HelperUtils.generateId("ENR-"),
+                student.getId(),
+                course.getRecordId(),
+                date,
+                "ACTIVE",
+                reason,
+                false
+        );
         return add(enrollment) ? enrollment : null;
     }
 
