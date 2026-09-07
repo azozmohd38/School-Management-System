@@ -53,11 +53,29 @@ public class EnrollmentService implements Manageable, Searchable {
 
     @Override
     public Object[] search(String keyword) {
-        return new Enrollment[0];
+        Enrollment[] matches = new Enrollment[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (enrollments[i].getStudentId().toLowerCase().contains(keyword.toLowerCase())
+                    || enrollments[i].getCourseId().toLowerCase().contains(keyword.toLowerCase())
+                    || enrollments[i].getStatus().toLowerCase().contains(keyword.toLowerCase())) {
+                matches[matchCount++] = enrollments[i];
+            }
+        }
+        Enrollment[] result = new Enrollment[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
     }
 
     @Override
     public Object searchById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (enrollments[i].getEnrollmentId().equalsIgnoreCase(id)) {
+                return enrollments[i];
+            }
+        }
         return null;
     }
 
