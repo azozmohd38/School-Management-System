@@ -40,12 +40,51 @@ public class SchoolApp {
             printMainMenu();
             int choice = input.readInt("Choose: ", 1, 6);
 
-            if (choice == 6) {
-                running = false;
+            switch (choice) {
+                case 1:
+                    handleStudents();
+                    break;
+                case 2:
+                    handleTeachers();
+                    break;
+                case 3:
+                    handleCourses();
+                    break;
+                case 4:
+                    handleEnrollments();
+                    break;
+                case 5:
+                    handleReports();
+                    break;
+                case 6:
+                    running = false;
+                    break;
+                default:
+                    break;
             }
         }
 
         System.out.println("School Management System closed.");
+    }
+
+    private void handleStudents() {
+        System.out.println("Student menu");
+    }
+
+    private void handleTeachers() {
+        System.out.println("Teacher menu");
+    }
+
+    private void handleCourses() {
+        System.out.println("Course menu");
+    }
+
+    private void handleEnrollments() {
+        System.out.println("Enrollment menu");
+    }
+
+    private void handleReports() {
+        System.out.println("Reports menu");
     }
 
     private void printMainMenu() {
