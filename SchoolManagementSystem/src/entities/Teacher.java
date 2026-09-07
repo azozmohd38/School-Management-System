@@ -109,6 +109,10 @@ public class Teacher extends Person {
         return true;
     }
 
+    public int getSlotCount() {
+        return slotCount;
+    }
+
     public int getClassLoad() {
         return classCount;
     }
