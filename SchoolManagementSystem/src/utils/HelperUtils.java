@@ -83,12 +83,13 @@ public final class HelperUtils {
     }
 
     public static boolean isOneOf(String value, String[] allowed) {
-        if (isEmpty(value) || allowed == null) {
+        if (isEmpty(value) || allowed == null || allowed.length == 0) {
             return false;
         }
 
+        String normalized = value.trim();
         for (String item : allowed) {
-            if (item != null && item.equalsIgnoreCase(value.trim())) {
+            if (item != null && item.equalsIgnoreCase(normalized)) {
                 return true;
             }
         }
