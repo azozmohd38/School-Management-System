@@ -229,7 +229,7 @@ public class Person implements Displayable {
             return false;
         }
         Person person = (Person) object;
-        return id.equals(person.id);
+        return Objects.equals(id, person.id);
     }
 
     @Override
