@@ -82,6 +82,6 @@ public class HeadTeacher extends Teacher {
 
     @Override
     public void displaySummary() {
-        System.out.println(getId() + " - " + getFullName() + " - Head Teacher");
+        System.out.println(getId() + " - " + getFullName() + " - Head Teacher - Manages " + teachersManaged);
     }
 }
