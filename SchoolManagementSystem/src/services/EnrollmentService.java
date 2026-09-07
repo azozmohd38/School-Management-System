@@ -104,6 +104,24 @@ public class EnrollmentService implements Manageable, Searchable {
         return add(enrollment) ? enrollment : null;
     }
 
+    public boolean cancel(String enrollmentId) {
+        Enrollment enrollment = (Enrollment) searchById(enrollmentId);
+        if (enrollment == null) {
+            return false;
+        }
+        enrollment.cancel();
+        return true;
+    }
+
+    public boolean complete(String enrollmentId) {
+        Enrollment enrollment = (Enrollment) searchById(enrollmentId);
+        if (enrollment == null) {
+            return false;
+        }
+        enrollment.complete();
+        return true;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
