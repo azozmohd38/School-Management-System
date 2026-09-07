@@ -31,6 +31,16 @@ public class InputHandler {
         }
     }
 
+    public String readText(String prompt, int minLength, int maxLength) {
+        while (true) {
+            String value = readText(prompt);
+            if (HelperUtils.isValidText(value, minLength, maxLength)) {
+                return value;
+            }
+            System.out.println("Text length is outside the allowed range");
+        }
+    }
+
     public int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
