@@ -70,6 +70,10 @@ public final class HelperUtils {
         return isInRange(age, 0, 120);
     }
 
+    public static boolean isValidYearCount(int years) {
+        return years >= 0;
+    }
+
     public static boolean isValidPhone(String phone) {
         if (phone == null) {
             return false;
