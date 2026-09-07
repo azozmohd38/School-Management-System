@@ -45,7 +45,6 @@ public class CourseService implements Manageable, Searchable {
         return result;
     }
 
-    @Override
     public int count() {
         return count;
     }
@@ -118,7 +117,6 @@ public class CourseService implements Manageable, Searchable {
         return total / count;
     }
 
-    @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
     }
