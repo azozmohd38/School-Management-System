@@ -165,7 +165,44 @@ public class SchoolApp {
     }
 
     private void handleTeachers() {
-        System.out.println("Teacher menu");
+        System.out.println();
+        System.out.println("1. View all teachers");
+        System.out.println("2. Search teachers");
+        System.out.println("3. Assign class");
+        System.out.println("4. List by subject");
+        System.out.println("5. Find available teachers");
+        System.out.println("6. Remove teacher");
+        System.out.println("7. Back");
+
+        int choice = input.readInt("Choose: ", 1, 7);
+
+        if (choice == 1) {
+            Object[] teachers = teacherService.getAll();
+            for (Object teacher : teachers) {
+                ((Teacher) teacher).displayInfo();
+            }
+        } else if (choice == 2) {
+            Object[] results = teacherService.search(input.readText("Keyword: "));
+            for (Object result : results) {
+                ((Teacher) result).displaySummary();
+            }
+        } else if (choice == 3) {
+            String teacherId = input.readText("Teacher ID: ");
+            String classId = input.readText("Class ID: ");
+            teacherService.assignClass(teacherId, classId);
+        } else if (choice == 4) {
+            Teacher[] teachers = teacherService.listBySubject(input.readText("Subject: "));
+            for (Teacher teacher : teachers) {
+                teacher.displaySummary();
+            }
+        } else if (choice == 5) {
+            Teacher[] teachers = teacherService.availableTeachers(input.readText("Time slot: "));
+            for (Teacher teacher : teachers) {
+                teacher.displaySummary();
+            }
+        } else if (choice == 6) {
+            teacherService.removeById(input.readText("Teacher ID: "));
+        }
     }
 
     private void handleCourses() {
