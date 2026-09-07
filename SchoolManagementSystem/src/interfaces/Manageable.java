@@ -9,4 +9,8 @@ public interface Manageable {
     Object[] getAll();
 
     int count();
+
+    default boolean isEmpty() {
+        return count() == 0;
+    }
 }
