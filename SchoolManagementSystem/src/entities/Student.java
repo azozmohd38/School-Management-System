@@ -88,8 +88,13 @@ public class Student extends Person {
     }
 
     public void listSubjects() {
+        if (subjectCount == 0) {
+            System.out.println("No enrolled subjects");
+            return;
+        }
+
         for (int i = 0; i < subjectCount; i++) {
-            System.out.println(enrolledSubjects[i]);
+            System.out.println((i + 1) + ". " + enrolledSubjects[i]);
         }
     }
 
