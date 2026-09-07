@@ -133,6 +133,6 @@ public class CourseRecord implements Displayable {
 
     @Override
     public void displaySummary() {
-        System.out.println(recordId + " - " + studentId + " - " + term + " - " + grade);
+        System.out.println(recordId + " - " + studentId + " - " + term + " - " + grade + " - Passed: " + isPassed());
     }
 }
