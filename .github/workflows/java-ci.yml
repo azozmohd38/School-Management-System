@@ -23,7 +23,10 @@ jobs:
       - name: Compile required project
         run: |
           mkdir -p out
-          find SchoolManagementSystem/src -name "*.java" -print0 | xargs -0 javac -d out
+          find SchoolManagementSystem/src -name "*.java" -print0 | xargs -0 javac -Xlint:all -d out
+
+      - name: Verify entry point class
+        run: test -f out/main/SchoolApp.class
 
       - name: Verify no generic collections
         run: |
