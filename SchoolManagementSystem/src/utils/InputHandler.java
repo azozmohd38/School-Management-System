@@ -21,6 +21,16 @@ public class InputHandler {
         }
     }
 
+    public String readText(String prompt, int minLength) {
+        while (true) {
+            String value = readText(prompt);
+            if (HelperUtils.isValidText(value, minLength)) {
+                return value;
+            }
+            System.out.println("Text is too short");
+        }
+    }
+
     public int readInt(String prompt) {
         while (true) {
             System.out.print(prompt);
