@@ -46,7 +46,6 @@ public class EnrollmentService implements Manageable, Searchable {
         return result;
     }
 
-    @Override
     public int count() {
         return count;
     }
@@ -161,7 +160,6 @@ public class EnrollmentService implements Manageable, Searchable {
         return result;
     }
 
-    @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
     }
