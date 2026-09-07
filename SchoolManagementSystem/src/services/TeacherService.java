@@ -53,11 +53,28 @@ public class TeacherService implements Manageable, Searchable {
 
     @Override
     public Object[] search(String keyword) {
-        return new Teacher[0];
+        Teacher[] matches = new Teacher[count];
+        int matchCount = 0;
+        for (int i = 0; i < count; i++) {
+            if (teachers[i].getFullName().toLowerCase().contains(keyword.toLowerCase())
+                    || teachers[i].getSubject().toLowerCase().contains(keyword.toLowerCase())) {
+                matches[matchCount++] = teachers[i];
+            }
+        }
+        Teacher[] result = new Teacher[matchCount];
+        for (int i = 0; i < matchCount; i++) {
+            result[i] = matches[i];
+        }
+        return result;
     }
 
     @Override
     public Object searchById(String id) {
+        for (int i = 0; i < count; i++) {
+            if (teachers[i].getId().equalsIgnoreCase(id)) {
+                return teachers[i];
+            }
+        }
         return null;
     }
 
