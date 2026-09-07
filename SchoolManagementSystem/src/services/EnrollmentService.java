@@ -122,6 +122,15 @@ public class EnrollmentService implements Manageable, Searchable {
         return true;
     }
 
+    public boolean transfer(String enrollmentId, String newCourseId, String newDate) {
+        Enrollment enrollment = (Enrollment) searchById(enrollmentId);
+        if (enrollment == null) {
+            return false;
+        }
+        enrollment.transfer(newCourseId, newDate);
+        return true;
+    }
+
     @Override
     public boolean existsById(String id) {
         return searchById(id) != null;
