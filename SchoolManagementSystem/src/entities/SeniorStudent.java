@@ -71,6 +71,10 @@ public class SeniorStudent extends Student {
         return graduated;
     }
 
+    public boolean isReadyToGraduate() {
+        return creditsEarned >= 120 && gpa >= 2.0;
+    }
+
     public void promote(String major, double gpa, String graduationDate, int creditsEarned) {
         setMajor(major);
         setGpa(gpa);
