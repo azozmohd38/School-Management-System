@@ -84,6 +84,9 @@ public class SeniorStudent extends Student {
     }
 
     public void graduate() {
+        if (!isReadyToGraduate()) {
+            throw new IllegalStateException("Student is not ready to graduate");
+        }
         graduated = true;
         setActive(false);
     }
